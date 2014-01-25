@@ -1,5 +1,8 @@
 *.py[cod]
+<<<<<<< HEAD
 *.pyc
+=======
+>>>>>>> 5ddbe90074ebb906d049c2e8486974b912a937d0
 
 # C extensions
 *.so
@@ -19,7 +22,10 @@ develop-eggs
 lib
 lib64
 __pycache__
+<<<<<<< HEAD
 tmp/
+=======
+>>>>>>> 5ddbe90074ebb906d049c2e8486974b912a937d0
 
 # Installer logs
 pip-log.txt
