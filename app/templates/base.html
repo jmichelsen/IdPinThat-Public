@@ -1,0 +1,76 @@
+{% extends "bootstrap/base.html" %}
+	{% import "bootstrap/google.html" as google %}
+	{% block title %}I'd Pin That!{% endblock %}		
+
+	{% block styles %}
+		{{super()}}
+		<link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+		<link rel="stylesheet" href="{{url_for('.static', filename='css/style.css')}}">
+		<link rel="stylesheet" href="{{url_for('.static', filename='css/bootstrap.min.css')}}">
+		<link rel="stylesheet" href="{{url_for('.static', filename='css/slidebars.min.css')}}">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+
+		{{google.analytics(account="")}}
+    {% endblock styles %}
+
+{% block body %}
+<div id="sb-site">
+	<div class="container" id="wrap">
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	    <script src="http://cdnjs.cloudflare.com/ajax/libs/packery/1.1.2/packery.pkgd.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<script src="{{url_for('.static', filename='js/slidebars.min.js')}}"></script>
+		<script src="{{url_for('.static', filename='js/aware.js')}}"></script>
+		<script>
+			//Slidebars initialization
+			(function($) {
+			    $(document).ready(function() {
+			      $.slidebars();
+			    });
+			}) (jQuery);
+			
+			//aware initialization
+			$().aware();		
+			
+			//aware if first time visitor, to run tour
+			if (reader.firstVisit == true){
+			}
+		
+		</script>
+
+		<div id="hamburger" class="sb-toggle-right navbar-right">
+			<i class="fa fa-bars fa-2x"></i>
+		</div>		
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				<ul>
+				{% for message in messages %}
+					<li>{{ message }} </li>
+				{% endfor %}
+				</ul>
+				{% endif %}
+		{% endwith %}
+		
+		<div class="content">
+		{% block content %}
+		{% endblock %}
+		</div>
+	</div>
+
+	<div class="sb-slidebar sb-right">
+			<ul class="sb-list nav">
+				<li><a id="brand" href="{{ url_for('index') }}"><img src="{{url_for('.static', filename='img/logo.png')}}"></a></li>
+	           	<li>
+		            <form action="{{url_for('search')}}" method="post" name="search" class="input-group" style="padding: 10px 15px;">
+        			    {{g.search_form.hidden_tag()}}{{g.search_form.search(size=20, placeholder="Search for pictures", class="form-control", style="border-radius:0;")}}
+				    </form>
+            	</li>
+
+			    <li><a href="{{url_for('index')}}">Home</a></li>
+            	<li><a href="{{url_for('about')}}">About</a></li>
+
+			</ul>
+	</div>
+</div>
+
+{% endblock body %}

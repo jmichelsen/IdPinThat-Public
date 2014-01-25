@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/packery/1.1.2/packery.pkgd.min.js"></script>
+	<h1 class="page-header">Search results for: <div id="search-term">{{search_term}}</div></h1>
+	<ul class="pager row col-lg-14">
+                <li id="previous"><a href="#">Previous</a></li>
+                <li id="next"><a href="#">Next</a></li>
+              </ul>
+	<div id="container">
+    <div id="result-container" class="row col-lg-14 well"> 
+    {% for image in image_response %}
+        <div class='image'><a href="/edit/?url={{image.full_size}}"><img width="150px" src="{{image.preview}}"></a></div>
+		{% if loop.last %}
+		<script>
+            var $container = $('#result-container');                                                       
+			setTimeout(function() { $container.packery({itemSelector:'.image',gutter:10}); }, 500);
+		</script>
+		{% endif %}
+    {% endfor %}
+    </div>
+	</div>
+	<script>
+		$( document ).ready(function() {
+			var pageCurrent = {{page}};
+			var pageNext = pageCurrent+1;
+			var pagePrev = pageCurrent-1;
+			$('#previous a').attr('href', '/search/{{search_term}}/'+pagePrev);
+			$('#next a').attr('href', '/search/{{search_term}}/'+pageNext);
+				
+			if (pageCurrent==1){
+  				$('#previous').css('display', 'none');
+  			}
+		});
+	</script>
+<div id="push"></div>
+{% endblock %}

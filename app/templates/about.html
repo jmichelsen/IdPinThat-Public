@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+	<h1 class="page-header">About I'd Pin That!</h1>
+	<div id="container">
+		<div id="content" class="row col-lg-14 well">
+					<h2>What is <em>I'd Pin That?</em></h2>
+					<p><em>I'd Pin That</em> was created to help bloggers and non-designers create high quality images like those often seen on Pinterest. The hope is that anyone can quickly and easily create a great pin from the tools provided here to help their blog post attract interest on Pinterest.</p>
+					<h2>The Images</h2>
+					<p>The images on <em>I'd Pin That</em> are provided by <a class="pixabay-credit" href="http://pixabay.com/"><img src="{{url_for('.static', filename='img/pixabay-logo.png')}}"></a>. These images are Public Domain and free of any copyright.
+
+					<h2>The Developer</h2>
+					<p>My name is <a href="http://jessemichelsen.com">Jesse Michelsen</a>. I'm a Python and PHP developer. I work with WordPress on a daily basis and I created <em>I'd Pin That</em> as an answer to the often asked question, "How do I drive more Pinterest traffic to my blog?"</p>
+					<p><i class="fa fa-twitter fa-lg"></i>You can tweet me at <a href="https://twitter.com/pffirewall">@pffirewall</a></p>
+					<h2>The Code</h2>
+					<p><em>I'd Pin That</em> is built on the Python microframework, Flask and hosted on Heroku.</p>
+					<h2>License</h2>
+					<p><em>I'd Pin That</em> is licensed under the <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License v3</a>. Feel free to browse the code on <a href="https://github.com/jmichelsen/IdPinThat-Public">Github</a>.
+				 
+                </div>
+                <div class="tab-pane fade" id="tech">
+                </div>
+              </div>
+            </div>
+		</div>
+	</div>
+<div id="push"></div>
+{% endblock %}

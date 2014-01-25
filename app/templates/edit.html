@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+	<script type="text/javascript" src="http://feather.aviary.com/js/feather.js"></script>
+	<script src='//api.filepicker.io/v1/filepicker.js'></script>
+
+<h1 class="page-header">Edit your image</h1>
+<div id="progress_bar" class="progress progress-striped active">
+	<div class="progress-bar" style="width: 100%"></div>
+</div>
+<div id="result-image" class="col-lg-12 well">
+</div>
+<img id="the_pin" style="display:none;" src="/uploads/{{ image_filename }}"/>
+		
+	<script type='text/javascript'>
+		id = "the_pin";
+	
+		filepicker.setKey('YOUR_FILEPICKER_API_KEY_HERE');
+	   var featherEditor = new Aviary.Feather({
+		   apiKey: 'YOUR_AVIARY_API_KEY_HERE',
+		   apiVersion: 3,
+		   theme: 'minimum', // Check out our new 'light' and 'dark' themes!
+		   tools: 'all',
+		   noCloseButton: true,
+		   appendTo: 'result-image',
+		   onSave: function(imageID, newURL) {
+				filepicker.export(newURL, {extension:'.png'});
+		   },
+		   onError: function(errorObj) {
+			   alert(errorObj.message);
+		   }
+	   });
+		   function launchEditor(id) {
+			   featherEditor.launch({
+				   image: id
+			   });
+			  return false;
+	   		}
+		$(document).ready(function() {
+				setTimeout(
+                               function() 
+                               {
+                                        $('#progress_bar').css('display', 'none'),      
+                                        launchEditor(id);
+                               }, 2000);
+		});
+	</script>
+
+{% endblock %}

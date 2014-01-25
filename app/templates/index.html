@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+	<script>
+		$('#service-description').fadeIn('slow').animate({
+            'bottom': '54%'
+            }, {duration: 'slow', queue: false}, function() {
+            // Animation complete.
+        });
+	</script>
+	
+	<div id="welcome" class="jumbotron">
+	<div id="service-description" class="text-center">
+		<h1>Create the most pin inducing picture for your next great blog post.</h1>
+		<p class="text-muted">Easily add the perfect attention-grabbing text to beautiful <a href="http://bit.ly/1aDgelI">Public Domain</a> pictures.</p>
+	</div>
+	<div id="index-search-box">
+	<form action="{{url_for('search')}}" method="post" name="search" class="input-group" style="min-width: 100%;">
+		{{g.search_form.hidden_tag()}}{{g.search_form.search(size=20, placeholder="Search for pictures", class="form-control")}}
+		<span class="input-group-btn"><input class="btn btn-default" type="submit" value="Search" id="search-button"></span>
+	</form>
+	</div>
+	</div>
+</form>
+{% block footer %}
+{% endblock %}
+{% endblock %}
