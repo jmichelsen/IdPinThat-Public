@@ -10,12 +10,6 @@
     <div id="result-container" class="row col-lg-14 well"> 
     {% for image in image_response %}
         <div class='image'><a href="/edit/?url={{image.full_size}}"><img width="150px" src="{{image.preview}}"></a></div>
-		{% if loop.last %}
-		<script>
-            var $container = $('#result-container');                                                       
-			setTimeout(function() { $container.packery({itemSelector:'.image',gutter:10}); }, 500);
-		</script>
-		{% endif %}
     {% endfor %}
     </div>
 	</div>
@@ -30,6 +24,10 @@
 			if (pageCurrent==1){
   				$('#previous').css('display', 'none');
   			}
+		});
+		$( document ).on('load', function() {
+            		var $container = $('#result-container');                                                       
+			$container.packery({itemSelector:'.image',gutter:10});		
 		});
 	</script>
 <div id="push"></div>
